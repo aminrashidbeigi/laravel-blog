@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class PagesController extends Controller {
 
     public function getIndex(){
-        return view('welcome');
+        return view('pages/index');
     }
 
     public function getAbout(){
@@ -15,13 +15,12 @@ class PagesController extends Controller {
         $data = [];
         $data['fullname'] = $fullname;
         $data['email'] = 'a.rashidbeigi@gmail';
-        return view('about')->withData($data);
+        return view('pages/about')->withData($data);
     }
 
     public function getContact(){
 
-        return view('contact', compact('first', 'last'));
+        return view('pages/contact', compact('first', 'last'));
     }
-
 
 }
