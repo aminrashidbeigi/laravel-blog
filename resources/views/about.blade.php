@@ -69,7 +69,8 @@
 
     <div class="content">
         <div class="title m-b-md">About Me</div>
-        <p>I am a new laravel learner</p>
+        <p>My name is {{$data['fullname']}}</p>
+        <p>My email is {{$data['email']}}</p>
 
     </div>
 </div>

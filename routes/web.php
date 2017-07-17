@@ -11,22 +11,8 @@
 |
 */
 
-//Route::get('about', 'newController@index');
+Route::get('/', 'PagesController@getIndex');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('about', 'PagesController@getAbout');
 
-Route::get('about', function () {
-    return view('about');
-});
-
-Route::get('contact', function () {
-    $first = 'Amin';
-    $last = 'Rashidbeigi';
-    return view('contact', compact('first', 'last'));
-});
-
-//Route::get('about', function () {
-//    return view('about');
-//});
+Route::get('contact', 'PagesController@getContact');
