@@ -19,7 +19,6 @@ class PagesController extends Controller {
     }
 
     public function getContact(){
-
         return view('pages/contact', compact('first', 'last'));
     }
 

@@ -5,7 +5,8 @@
 @include('partials._nav')
 
 <div class="container">
-@yield('content')
+    @include('partials._message')
+    @yield('content')
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
