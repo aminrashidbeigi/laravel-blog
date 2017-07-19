@@ -1,0 +1,22 @@
+@extends('main')
+
+@section('content')
+
+    @foreach($posts as $post)
+        <div class="row">
+            <div class="col-md-10">
+                <h3>{{$post->title}}</h3>
+                <p>{{$post->body}}</p>
+            </div>
+            <div class="col-md-2">
+                {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class'=> 'btn btn-default')) !!}
+
+            </div>
+
+        </div>
+        <hr>
+    @endforeach
+
+
+@endsection
+
