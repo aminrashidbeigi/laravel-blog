@@ -45,7 +45,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->save();
 
-        Session::flash('success', 'Post successfully crated :)');
+        Session::flash('success', 'Post successfully created :)');
 
         return redirect()->route('posts.show', $post->id);
     }
@@ -68,7 +68,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->withPost($post);
     }
 
     /**
@@ -79,7 +80,20 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ));
+
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+
+        Session::flash('success', 'Post successfully edited :)');
+
+        return redirect()->route('posts.show', $post->id);
+
     }
 
     /**
@@ -88,8 +102,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }
