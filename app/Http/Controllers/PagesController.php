@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Post;
 
 class PagesController extends Controller {
 
     public function getIndex(){
-        return view('pages/index');
+        $posts = Post::paginate(2);
+        return view('pages/index')->withPosts($posts);
     }
 
     public function getAbout(){

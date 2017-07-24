@@ -10,12 +10,14 @@
             </div>
             <div class="col-md-2">
                 {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class'=> 'btn btn-default')) !!}
-
             </div>
 
         </div>
         <hr>
     @endforeach
+    <div class="text-center">
+        {{ $posts->links() }}
+    </div>
 
 
 @endsection

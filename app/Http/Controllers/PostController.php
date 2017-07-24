@@ -14,7 +14,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts =Post::all();
+        $posts =Post::paginate(2);
         return view('posts.index')->withPosts($posts);
     }
 
