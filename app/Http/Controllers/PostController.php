@@ -43,17 +43,19 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
+        $slug = str_slug($request->title, '_');
+        $post->slug = $slug;
         $post->save();
 
         Session::flash('success', 'Post successfully created :)');
-
         return redirect()->route('posts.show', $post->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param $slug
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
@@ -88,6 +90,8 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->title;
         $post->body = $request->body;
+        $slug = str_slug($request->title, '_');
+        $post->slug = $slug;
         $post->save();
 
         Session::flash('success', 'Post successfully edited :)');

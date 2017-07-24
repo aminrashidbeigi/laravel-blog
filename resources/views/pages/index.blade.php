@@ -20,12 +20,17 @@
                 <div class="post">
                     <h1>{{$post->title}}</h1>
                     <p>{{$post->body}}</p>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Read more</a></p>
+                    <p><a class="btn btn-primary btn-lg" href="{{ url('posts/'.$post->id) }}" role="button">Read more</a></p>
                 </div>
             </div>
         </div>
         <hr>
 
     @endforeach
+
+      <div class="text-center">
+          {{ $posts->links() }}
+      </div>
+
 
 @endsection
