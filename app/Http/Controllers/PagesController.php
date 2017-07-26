@@ -24,4 +24,11 @@ class PagesController extends Controller {
         return view('pages/contact', compact('first', 'last'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+
 }

@@ -8,15 +8,22 @@ use Session;
 
 class PostController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth')->except('show');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts =Post::paginate(2);
+        $posts =Post::paginate(5);
         return view('posts.index')->withPosts($posts);
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -15,7 +15,11 @@ Route::get('/', 'PagesController@getIndex');
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
 Route::resource('posts', 'PostController');
-//Route::get('{slug}', 'SlugController@getPost');
+
+
+Route::get('blog/{slug}', 'BlogController@getPost')->name('blog.show.slug');
+Route::get('blog/{post}', 'PagesController@blogShow')->name('blog.show');
+Route::get('blog', 'BlogController@blogIndex')->name('blog.index');
 
 Auth::routes();
 
