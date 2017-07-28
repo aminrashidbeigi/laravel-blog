@@ -9,6 +9,13 @@
             {{ Form::label('title', 'Title:') }}
             {{ Form::text('title', null, array('class' => 'form-control')) }}
 
+            {{ Form::label('category_id', 'Category:') }}
+            <select class="form-control" name="category_id">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+
             {{ Form::label('body', 'Body:') }}
             {{ Form::textarea('body', null, array('class' => 'form-control')) }}
 

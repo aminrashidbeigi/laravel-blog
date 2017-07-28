@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
 use Session;
@@ -31,7 +32,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -44,12 +46,14 @@ class PostController extends Controller
 
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'category_id' => 'required|integer',
             'body' => 'required'
         ));
 
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->category_id = $request->category_id;
         $slug = str_slug($request->title, '_');
         $post->slug = $slug;
         $post->save();
@@ -78,7 +82,8 @@ class PostController extends Controller
      */
     public function edit($id) {
         $post = Post::find($id);
-        return view('posts.edit')->withPost($post);
+        $categories = Category::all();
+        return view('posts.edit')->withPost($post)->withCategories($categories);
     }
 
     /**
@@ -91,12 +96,14 @@ class PostController extends Controller
     public function update(Request $request, $id) {
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'category_id' => 'required|integer',
             'body' => 'required'
         ));
 
         $post = Post::find($id);
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->category_id = $request->category_id;
         $slug = str_slug($request->title, '_');
         $post->slug = $slug;
         $post->save();
