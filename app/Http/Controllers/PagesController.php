@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use Session;
+use Illuminate\Http\Request;
+use Mail;
 
 class PagesController extends Controller {
 
@@ -24,11 +27,32 @@ class PagesController extends Controller {
         return view('pages/contact', compact('first', 'last'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function postContact(Request $request){
+
+        $this->validate($request, array(
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required'
+        ));
+
+        $data = array(
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'body' => $request->message
+        );
+
+        Mail::send('email.contact', $data, function ($message) use ($data){
+            $message->from($data['email']);
+            $message->to('a.rashidbeigi@gmail.com');
+            $message->subject($data['subject']);
+        });
+
+        Session::flash('success', 'Email successfully sent.');
+
+        return redirect()->url('/');
+    }
+
 
 
 }
