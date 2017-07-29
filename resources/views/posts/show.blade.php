@@ -31,7 +31,6 @@
                         <div class="col-md-6">
                             {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class'=> 'btn btn-primary btn-lg btn-block')) !!}
                         </div>
-
                         <div class="col-md-6">
                             {!! Form::model($post, ['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger btn-lg btn-block')) }}
@@ -41,8 +40,6 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 
 @endsection
