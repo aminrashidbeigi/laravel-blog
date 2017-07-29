@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Post;
 use Session;
@@ -33,7 +34,9 @@ class PostController extends Controller
      */
     public function create() {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -57,6 +60,8 @@ class PostController extends Controller
         $slug = str_slug($request->title, '_');
         $post->slug = $slug;
         $post->save();
+
+        $post->tags()->sync($request->tags,false);
 
         Session::flash('success', 'Post successfully created :)');
         return redirect()->route('posts.show', $post->id);

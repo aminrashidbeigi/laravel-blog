@@ -1,5 +1,10 @@
 @extends('main')
 
+
+@section('stylesheets')
+    {!! Html::style('css/select2.min.css')  !!}
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -24,4 +29,8 @@
             {!! Form::close() !!}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    {!! Html::script('js/select2.min.js') !!}
 @endsection

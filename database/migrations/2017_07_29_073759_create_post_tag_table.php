@@ -16,10 +16,10 @@ class CreatePostTagTable extends Migration
 
         Schema::create('post_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('post_id');
+            $table->string('post_id')->unsigned();
             $table->foreign('post_id')->refrences('id')->on('posts');
 
-            $table->string('tag_id');
+            $table->string('tag_id')->unsigned();
             $table->foreign('tag_id')->refrences('id')->on('tag');
 
             $table->timestamps();
