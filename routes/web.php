@@ -18,6 +18,7 @@ Route::post('contact', 'PagesController@postContact')->name('contact');
 Route::resource('posts', 'PostController');
 Route::resource('categories', 'CategoryController');
 Route::resource('tags', 'TagController');
+Route::resource('comments', 'CommentController');
 
 
 Route::get('blog/{slug}', 'BlogController@getPost')->name('blog.show.slug');
